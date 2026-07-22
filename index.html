@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="公考资料网盘索引与搜索" />
+    <title>公考资料库</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <a class="brand" href="./" aria-label="回到首页">
+          <span class="brand-mark">卷</span>
+          <span>公考资料库</span>
+        </a>
+        <div class="hero-copy">
+          <p class="eyebrow">RESOURCE DIRECTORY</p>
+          <h1>想找的资料，一搜就到。</h1>
+          <p class="intro">按年份、科目、机构或老师名称检索，找到后可直接打开对应网盘链接。</p>
+        </div>
+        <label class="search-box" for="search-input">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="例如：2027 申论、超格、资料分析" autocomplete="off" />
+          <button id="clear-search" class="clear-button" type="button" aria-label="清空搜索" hidden>×</button>
+        </label>
+        <div class="quick-searches" aria-label="快速搜索">
+          <span>热门：</span>
+          <button type="button" data-query="2027">2027资料</button>
+          <button type="button" data-query="申论">申论</button>
+          <button type="button" data-query="行测">行测</button>
+          <button type="button" data-query="事业编">事业编</button>
+          <button type="button" data-query="时政">时政</button>
+        </div>
+      </header>
+
+      <section class="results-section" aria-live="polite">
+        <div class="results-heading">
+          <p id="result-summary">正在加载资料…</p>
+          <p class="result-tip">链接由资料库维护，请以网盘内实际内容为准。</p>
+        </div>
+        <div id="results" class="results" aria-label="搜索结果"></div>
+        <button id="show-more" class="show-more" type="button" hidden>显示更多结果</button>
+      </section>
+    </main>
+    <footer>公考资料库 · 仅提供资料索引与跳转入口 · <a href="DISCLAIMER.md">免责声明</a></footer>
+    <script src="assets/app.js" defer></script>
+  </body>
+</html>
