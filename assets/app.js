@@ -1,4 +1,4 @@
-const RESULTS_PER_PAGE = 50;
+const RESULTS_PER_PAGE = 20;
 
 const input = document.querySelector('#search-input');
 const resultsElement = document.querySelector('#results');
@@ -16,7 +16,7 @@ function searchable(value) {
 
 function getMatches(query) {
   const terms = searchable(query).match(/[\u4e00-\u9fff]+|[a-z]+|\d+/g) ?? [];
-  if (!terms.length) return resources;
+  if (!terms.length) return [];
   return resources.filter((resource) => {
     const title = searchable(resource.title);
     return terms.every((term) => title.includes(term));
@@ -50,6 +50,23 @@ function makeCard(resource) {
 function render() {
   resultsElement.replaceChildren();
   const query = input.value.trim();
+  const hasQuery = Boolean(query);
+
+  if (!hasQuery) {
+    const empty = document.createElement('div');
+    empty.className = 'empty empty-discovery';
+    const title = document.createElement('strong');
+    title.textContent = '输入关键词，开始找资料';
+    const description = document.createElement('span');
+    description.textContent = '可按年份、科目、机构或老师名称检索，例如“2027 申论”或“超格”。';
+    empty.append(title, description);
+    resultsElement.append(empty);
+    summaryElement.textContent = `共收录 ${resources.length} 条资料 · 等待搜索`;
+    showMoreButton.hidden = true;
+    clearButton.hidden = true;
+    return;
+  }
+
   const displayed = matchingResources.slice(0, visibleCount);
 
   if (matchingResources.length === 0) {
@@ -61,9 +78,7 @@ function render() {
     displayed.forEach((resource) => resultsElement.append(makeCard(resource)));
   }
 
-  summaryElement.textContent = query
-    ? `“${query}”找到 ${matchingResources.length} 条资料`
-    : `共收录 ${resources.length} 条资料`;
+  summaryElement.textContent = `“${query}”找到 ${matchingResources.length} 条资料`;
   showMoreButton.hidden = visibleCount >= matchingResources.length;
   clearButton.hidden = !query;
 }
@@ -92,7 +107,21 @@ document.querySelectorAll('[data-query]').forEach((button) => {
   });
 });
 
-fetch('./data/resources.json')
+const disclaimerDialog = document.querySelector('#disclaimer-dialog');
+const disclaimerSessionKey = 'gongkao-disclaimer-seen';
+function closeDisclaimer() {
+  disclaimerDialog.close();
+  sessionStorage.setItem(disclaimerSessionKey, 'true');
+}
+document.querySelector('#accept-disclaimer').addEventListener('click', closeDisclaimer);
+document.querySelector('#close-disclaimer').addEventListener('click', closeDisclaimer);
+if (!sessionStorage.getItem(disclaimerSessionKey) && typeof disclaimerDialog.showModal === 'function') {
+  disclaimerDialog.showModal();
+}
+
+const resourceDataUrl = window.RESOURCE_API_URL || './data/resources.json';
+
+fetch(resourceDataUrl, { cache: 'no-store' })
   .then((response) => {
     if (!response.ok) throw new Error('资料索引加载失败');
     return response.json();

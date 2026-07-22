@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>资料库后台</title>
+    <link rel="stylesheet" href="assets/admin.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ADMIN CONSOLE</p>
+          <h1>学习资源库后台</h1>
+          <p id="status-text">正在检查登录状态…</p>
+        </div>
+        <button id="logout-button" class="secondary" type="button" hidden>退出登录</button>
+      </header>
+
+      <section id="login-panel" class="panel narrow" hidden>
+        <h2>管理员登录</h2>
+        <p>请使用 Netlify Identity 中受邀的管理员邮箱登录。</p>
+        <form id="login-form" class="form-stack">
+          <label>邮箱<input name="email" type="email" autocomplete="email" required /></label>
+          <label>密码<input name="password" type="password" autocomplete="current-password" required /></label>
+          <button type="submit">登录后台</button>
+          <p class="form-message" id="login-message" role="alert"></p>
+        </form>
+      </section>
+
+      <div id="admin-panel" hidden>
+        <section class="summary-grid">
+          <article><span>资料总数</span><strong id="total-count">—</strong></article>
+          <article><span>当前账号</span><strong id="user-email">—</strong></article>
+          <article><span>数据状态</span><strong id="data-status">加载中</strong></article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">RESOURCE EDITOR</p><h2 id="form-title">新增网盘资料</h2></div><button id="cancel-edit" class="secondary" type="button" hidden>取消编辑</button></div>
+          <form id="resource-form" class="resource-form">
+            <input name="id" type="hidden" />
+            <label>资料标题<input name="title" placeholder="例如：花生十三资料分析 600 题" maxlength="200" required /></label>
+            <label>网盘链接<input name="url" type="url" placeholder="https://pan.quark.cn/s/…" required /></label>
+            <label>平台<select name="platform"><option value="夸克">夸克</option><option value="百度网盘">百度网盘</option><option value="飞书">飞书</option><option value="阿里云盘">阿里云盘</option><option value="其他">其他</option></select></label>
+            <label>分类<input name="category" placeholder="例如：行测 / 申论 / 面试" maxlength="80" /></label>
+            <label>提取码<input name="code" placeholder="没有可不填" maxlength="100" /></label>
+            <label class="wide">说明<textarea name="description" placeholder="简短说明，搜索时也会匹配这里" maxlength="500"></textarea></label>
+            <div class="wide form-actions"><button type="submit" id="save-button">保存到资料库</button><p id="resource-message" class="form-message" role="alert"></p></div>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">MANAGE RESOURCES</p><h2>已有资料</h2></div><input id="filter-input" type="search" placeholder="搜索标题、分类或说明" /></div>
+          <div id="resource-list" class="resource-list"></div>
+        </section>
+      </div>
+    </main>
+    <script src="assets/admin.js" defer></script>
+  </body>
+</html>

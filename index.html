@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
+    <dialog id="disclaimer-dialog" class="disclaimer-dialog" aria-labelledby="disclaimer-title">
+      <div class="dialog-heading">
+        <span class="dialog-mark" aria-hidden="true">ⓘ</span>
+        <button id="close-disclaimer" class="dialog-close" type="button" aria-label="关闭声明">×</button>
+      </div>
+      <p class="eyebrow">USAGE NOTICE</p>
+      <h2 id="disclaimer-title">使用前请阅读</h2>
+      <p>本站仅提供学习资料索引与第三方链接跳转，不存储、上传或提供任何文件内容。</p>
+      <p>请自觉遵守法律法规和平台规则，仅在获得授权及法律允许的范围内使用资料，并支持正版课程、图书和官方资料。</p>
+      <p class="dialog-footnote">访问第三方链接所产生的风险与后果由使用者自行承担。</p>
+      <div class="dialog-actions">
+        <a href="DISCLAIMER.md">查看完整免责声明</a>
+        <button id="accept-disclaimer" type="button">我已了解</button>
+      </div>
+    </dialog>
     <main class="page-shell">
       <header class="hero">
         <a class="brand" href="./" aria-label="回到首页">
@@ -32,6 +47,10 @@
           <button type="button" data-query="事业编">事业编</button>
           <button type="button" data-query="时政">时政</button>
         </div>
+        <aside class="disclaimer-banner" aria-label="使用声明">
+          <span aria-hidden="true">ⓘ</span>
+          <p>本站仅提供学习资料索引与第三方链接跳转，不存储或提供文件内容。请遵守法律法规及平台规则，并支持正版。<a href="DISCLAIMER.md">查看完整免责声明</a></p>
+        </aside>
       </header>
 
       <section class="results-section" aria-live="polite">
@@ -44,6 +63,7 @@
       </section>
     </main>
     <footer>公考资料库 · 仅提供资料索引与跳转入口 · <a href="DISCLAIMER.md">免责声明</a></footer>
+    <script src="assets/config.js" defer></script>
     <script src="assets/app.js" defer></script>
   </body>
 </html>

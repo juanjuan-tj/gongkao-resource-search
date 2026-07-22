@@ -1,0 +1,12 @@
+{
+  "name": "gongkao-resource-search",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.7.9",
+    "@netlify/identity": "^1.2.0"
+  }
+}

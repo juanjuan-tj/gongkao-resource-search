@@ -27,6 +27,18 @@
 3. 仓库设置中打开 **Settings → Pages**，在 **Build and deployment** 选择 **Deploy from a branch**、`main` 分支、`/(root)` 目录并保存。
 4. 等待一两分钟，即可在 Pages 页面看到访问地址。
 
+## Netlify 管理后台
+
+项目内已包含 `admin.html`、Netlify Functions 和 Netlify Blobs 数据接口。将同一仓库导入 Netlify 后，按以下步骤启用后台：
+
+1. 在 Netlify 新建项目并连接本 GitHub 仓库；构建命令留空，发布目录填 `.`。
+2. 在 **Project configuration → Environment variables** 新增 `ADMIN_EMAIL`，值为你用来登录后台的邮箱；可选新增 `PUBLIC_SITE_ORIGIN`，值为 `https://juanjuan-tj.github.io`。
+3. 在 **Project configuration → Identity** 点击 **Enable Identity**，启用 **Invite only**，再邀请 `ADMIN_EMAIL` 对应的邮箱并设置密码。
+4. 打开 `https://你的Netlify项目.netlify.app/admin`，使用该邮箱登录并维护资料。
+5. 将 [assets/config.js](assets/config.js) 中的 `RESOURCE_API_URL` 改为 `https://你的Netlify项目.netlify.app/.netlify/functions/resources`，上传该文件到 GitHub；GitHub Pages 即会读取后台的最新资料。
+
+不要把 Netlify token、管理员密码或任何密钥提交到 GitHub 仓库。
+
 ## 免责声明
 
 本站内容仅用于学习交流和资料索引，不用于任何商业用途。详见 [免责声明](DISCLAIMER.md)。
