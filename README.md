@@ -2,7 +2,7 @@
 
 这是一个用于整理备考学习入口的静态导航页面，主要用于个人学习、资料索引和链接归档。
 
-在线访问：部署 GitHub Pages 后，将网站链接填写在这里。
+在线访问：[https://juanjuan-tj.github.io/gongkao-resource-search/](https://juanjuan-tj.github.io/gongkao-resource-search/)
 
 ## 功能
 
@@ -34,8 +34,8 @@
 1. 在 Netlify 新建项目并连接本 GitHub 仓库；构建命令留空，发布目录填 `.`。
 2. 在 **Project configuration → Environment variables** 新增 `ADMIN_EMAIL`，值为你用来登录后台的邮箱；可选新增 `PUBLIC_SITE_ORIGIN`，值为 `https://juanjuan-tj.github.io`。
 3. 在 **Project configuration → Identity** 点击 **Enable Identity**，启用 **Invite only**，再邀请 `ADMIN_EMAIL` 对应的邮箱并设置密码。
-4. 打开 `https://你的Netlify项目.netlify.app/admin`，使用该邮箱登录并维护资料。
-5. 将 [assets/config.js](assets/config.js) 中的 `RESOURCE_API_URL` 改为 `https://你的Netlify项目.netlify.app/.netlify/functions/resources`，上传该文件到 GitHub；GitHub Pages 即会读取后台的最新资料。
+4. 打开 `https://gongkao-resource-admin-juanjuan.netlify.app/admin`，使用该邮箱登录并维护资料。
+5. [assets/config.js](assets/config.js) 已配置后台接口；上传该文件到 GitHub 后，GitHub Pages 即会读取后台的最新资料。
 
 不要把 Netlify token、管理员密码或任何密钥提交到 GitHub 仓库。
 
